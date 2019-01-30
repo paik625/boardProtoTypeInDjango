@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}게시판{% endblock %}
+{% block content %}
+
+	            	<div class="page-header">
+		            	<div class="form-group">
+		            		<select class="custom-select search-select inline-block">
+			                    <option selected="">검색조건</option>
+			                    <option value="1">전체</option>
+			                    <option value="2">글제목</option>
+			                    <option value="3">작성자</option>
+			                    <option value="4">글내용</option>
+		                  	</select>
+			            	<form class="form-inline inline-block">
+					            <input class="form-control inline-block search-input" type="text" placeholder="검색어를 입력하세요">
+					            <button class="btn btn-secondary" type="submit">검색</button>
+					        </form>
+							<a href="{% url 'board:board_create' %}"> <button type="button" class="btn btn-primary" id="write-btn">글쓰기</button></a>
+		            	</div>
+		            </div><!--end .page-header-->
+
+
+		            <div class="bs-component mb-30">
+		              <table class="table table-hover">
+		                <thead>
+		                  <tr>
+		                    <th scope="col">번호</th>
+		                    <th scope="col">글제목</th>
+		                    <th scope="col">작성자</th>
+		                    <th scope="col">조회수</th>
+		                  </tr>
+		                </thead>
+		                <tbody>
+						{%for object in object_list%}
+		                  <tr>
+                              <th scope="row">{{forloop.counter}}</th>
+							  <td><a href="{% url 'board:board_detail' object.id %}">{{object.title}}</a></td>
+		                    <td>{{object.author}}</td>
+		                    <td>{{object.hit}}</td>
+		                  </tr>
+						{% endfor%}
+		                </tbody>
+		              </table>
+		            </div><!--end table list-->
+                {% endblock %}
+
+{% block pagination %}
+    {% if is_paginated %}
+    <div>
+        <ul class="pagination flex-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="{% url 'board:board_list' %}?page={{ page_obj.previous_page_number }}" tabindex="-1">«</a>
+                </li>
+                            {% else %}
+                    <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" >«</a>
+        </li>
+        {% endif %}
+
+            {% for object in page_obj.paginator.page_range %}
+                <li class="page-item active {% if page_obj.number == forloop.counter %}disabled{% endif %}">
+                    <a class="page-link" href="{{ request.path }}?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                </li>
+            {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="{% url 'board:board_list' %}?page={{ page_obj.next_page_number }}">»</a>
+          </li>
+        {% else %}
+ 	<li class="page-item">
+        <a class="page-link" href="#">»</a>
+    </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+            </div><!--end paging-->
+
+{% endblock %}

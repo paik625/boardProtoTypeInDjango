@@ -1,0 +1,60 @@
+body {
+	padding-top: 100px;
+}
+
+th, td, tr {
+	text-align: center;
+}
+
+
+.text-center {
+	text-align: center;
+}
+
+.flex-center {
+	justify-content: center;
+}
+
+.mb-30 {
+	margin-bottom: 30px;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.pull-right {
+	float: right;
+}
+
+.page-header {
+	margin-bottom: 30px;
+}
+
+.search-select {
+	width: 16.6666666667%;
+}
+
+#write-btn {
+	float: right;
+}
+
+@media (max-width: 480px) {
+	body {
+		padding-top: 70px;
+	}
+	.page-header {
+		margin-bottom: 0;
+	}
+	.search-select {
+		width: 28%;
+	}
+	.search-input {
+		width: 75%;
+	}
+	#write-btn {
+		position: fixed;
+		right: 30px;
+		bottom: 70px;
+	}
+}

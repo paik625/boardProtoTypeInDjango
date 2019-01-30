@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+	          	<!-- 제목, 작성자, 작성일, 내용, 첨부파일 -->
+	          	<div class="card mb-4">
+	                <div class="card-body">
+		                <h4 class="card-title">{{object.title}}</h4>
+		                <h6 class="card-subtitle text-muted inline-block">{{object.author}}  ㅣ  {{ object.create_at }}</h6>
+		                <hr class="my-4">
+		                <p class="card-text">
+		             {{object.content}}
+		                </p>
+		                <hr class="my-4">
+	                </div>
+	            </div>
+                  	
+					<a href="{% url 'board:board_delete' object.id %}"><button type="submit" class="btn btn-primary pull-right">삭제하기</button></a>
+					<a href="{% url 'board:board_update' object.id %}"><button type="submit" class="btn btn-primary pull-right mr-4">수정하기</button></a>
+{% endblock %}
