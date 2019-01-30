@@ -11,6 +11,7 @@ class BOARDList(ListView):
     model = BOARD
     paginate_by = 10
 
+
 class BOARDCreate(CreateView):
     model = BOARD
     fields = ['title', 'author', 'content']
@@ -23,8 +24,6 @@ class BOARDUpdate(UpdateView):
     fields = ['title', 'author', 'content']
     template_name_suffix = '_update'
     success_url = reverse_lazy('board:board_list')
-    success_url = reverse_lazy('board:board_list')
-
 
 class BOARDDelete(DeleteView):
     model = BOARD
@@ -34,6 +33,7 @@ class BOARDDelete(DeleteView):
 
 class BOARDDetail(DetailView):
     model = BOARD
+
 #
 # def create(request):
 #

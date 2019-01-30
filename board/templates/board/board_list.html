@@ -33,7 +33,7 @@
 		                <tbody>
 						{%for object in object_list%}
 		                  <tr>
-                              <th scope="row">{{forloop.counter}}</th>
+                              <th scope="row">{{forloop.revcounter}}</th>
 							  <td><a href="{% url 'board:board_detail' object.id %}">{{object.title}}</a></td>
 		                    <td>{{object.author}}</td>
 		                    <td>{{object.hit}}</td>

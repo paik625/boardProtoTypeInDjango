@@ -23,5 +23,11 @@ class BOARD(models.Model):
     def get_absolute_url(self):
         return reverse_lazy('board_detail', args=[self.id])
 
+    @property
+    def hit_count(self):
+        self.hit = self.hit + 1
+        self.save()
+        return""
+
     class Meta:
-        ordering = ['create_at']
+        ordering = ['-create_at']
