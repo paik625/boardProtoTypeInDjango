@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Create your views here.
 class BOARDList(ListView):
     model = BOARD
-    paginate_by = 10
+    paginate_by = 5
 
 
 class BOARDCreate(CreateView):

@@ -33,7 +33,8 @@
 		                <tbody>
 						{%for object in object_list%}
 		                  <tr>
-                              <th scope="row">{{forloop.revcounter}}</th>
+                              <th scope="row">{{ page_obj.start_index|add:forloop.counter }}</th>
+
 							  <td><a href="{% url 'board:board_detail' object.id %}">{{object.title}}</a></td>
 		                    <td>{{object.author}}</td>
 		                    <td>{{object.hit}}</td>
@@ -49,13 +50,13 @@
     <div>
         <ul class="pagination flex-center">
             {% if page_obj.has_previous %}
-                <li class="page-item disabled">
+                <li class="page-item">
                     <a class="page-link" href="{% url 'board:board_list' %}?page={{ page_obj.previous_page_number }}" tabindex="-1">«</a>
                 </li>
-                            {% else %}
-                    <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" >«</a>
-        </li>
+            {% else %}
+                <li class="page-item disabled">
+                     <a class="page-link" href="#" tabindex="-1" >«</a>
+                </li>
         {% endif %}
 
             {% for object in page_obj.paginator.page_range %}
@@ -69,12 +70,14 @@
               <a class="page-link" href="{% url 'board:board_list' %}?page={{ page_obj.next_page_number }}">»</a>
           </li>
         {% else %}
- 	<li class="page-item">
+ 	<li class="page-item disabled"">
         <a class="page-link" href="#">»</a>
     </li>
         {% endif %}
+
     </ul>
     {% endif %}
+
             </div><!--end paging-->
 
 {% endblock %}
