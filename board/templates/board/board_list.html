@@ -11,7 +11,7 @@
 			                    <option value="3">작성자</option>
 			                    <option value="4">글내용</option>
 		                  	</select>
-			            	<form class="form-inline inline-block">
+			            	<form class="form-inline inline-block" method="get">
 					            <input class="form-control inline-block search-input" type="text" placeholder="검색어를 입력하세요">
 					            <button class="btn btn-secondary" type="submit">검색</button>
 					        </form>
@@ -31,10 +31,10 @@
 		                  </tr>
 		                </thead>
 		                <tbody>
-						{%for object in object_list%}
+                        {% load mathfilters %}
+						{%for object in object_list %}
 		                  <tr>
-                              <th scope="row">{{ page_obj.start_index|add:forloop.counter }}</th>
-
+                              <th scope="row">{{forloop.counter0|add:page_obj.start_index}}</th>
 							  <td><a href="{% url 'board:board_detail' object.id %}">{{object.title}}</a></td>
 		                    <td>{{object.author}}</td>
 		                    <td>{{object.hit}}</td>
@@ -70,7 +70,7 @@
               <a class="page-link" href="{% url 'board:board_list' %}?page={{ page_obj.next_page_number }}">»</a>
           </li>
         {% else %}
- 	<li class="page-item disabled"">
+ 	<li class="page-item disabled">
         <a class="page-link" href="#">»</a>
     </li>
         {% endif %}

@@ -12,6 +12,7 @@ class BOARDList(ListView):
     paginate_by = 5
 
 
+
 class BOARDCreate(CreateView):
     model = BOARD
     fields = ['title', 'author', 'content']
