@@ -31,7 +31,6 @@
 		                  </tr>
 		                </thead>
 		                <tbody>
-                        {% load mathfilters %}
 						{%for object in object_list %}
 		                  <tr>
                               <th scope="row">{{forloop.counter0|add:page_obj.start_index}}</th>
